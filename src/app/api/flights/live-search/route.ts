@@ -27,6 +27,9 @@ export async function POST(request: NextRequest) {
       request.headers.get("x-real-ip") ||
       "127.0.0.1";
 
+    const requestHost = request.headers.get("host") || "localhost";
+    const host = requestHost.split(":")[0];
+
     const data = await startFlightSearch({
       origin,
       destination,
@@ -37,6 +40,7 @@ export async function POST(request: NextRequest) {
       infants: infants || 0,
       tripClass: tripClass || "Y",
       userIp: ip,
+      host,
     });
 
     return NextResponse.json({ search_id: data.search_id });

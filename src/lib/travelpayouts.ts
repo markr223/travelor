@@ -283,6 +283,7 @@ export async function startFlightSearch(params: {
   infants?: number;
   tripClass?: string;
   userIp?: string;
+  host?: string;
 }): Promise<{ search_id: string; currency_rates?: Record<string, number> }> {
   const segments: Array<{ origin: string; destination: string; date: string }> = [
     { origin: params.origin, destination: params.destination, date: params.departDate },
@@ -295,9 +296,11 @@ export async function startFlightSearch(params: {
     });
   }
 
+  const host = params.host || process.env.SITE_HOST || "localhost";
+
   const query: Record<string, unknown> = {
     marker: MARKER,
-    host: "localhost",
+    host,
     user_ip: params.userIp || "127.0.0.1",
     locale: "en",
     trip_class: params.tripClass || "Y",
