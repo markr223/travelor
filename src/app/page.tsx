@@ -1,65 +1,144 @@
-import Image from "next/image";
+import { HomeSearch } from "@/components/HomeSearch";
+import { FlightDeals } from "@/components/FlightDeals";
+import { DestinationCard } from "@/components/DestinationCard";
+import { Plane, Hotel, Shield, DollarSign, Globe, Zap } from "lucide-react";
+import {
+  FadeIn,
+  HeroText,
+  FloatingElement,
+  StaggerContainer,
+  StaggerItem,
+} from "@/components/motion";
 
-export default function Home() {
+const POPULAR_DESTINATIONS = [
+  { name: "Paris", country: "France", iata: "PAR" },
+  { name: "London", country: "United Kingdom", iata: "LON" },
+  { name: "Dubai", country: "UAE", iata: "DXB" },
+  { name: "Bangkok", country: "Thailand", iata: "BKK" },
+  { name: "Rome", country: "Italy", iata: "ROM" },
+  { name: "Barcelona", country: "Spain", iata: "BCN" },
+  { name: "Istanbul", country: "Turkey", iata: "IST" },
+  { name: "New York", country: "USA", iata: "NYC" },
+];
+
+const FEATURES = [
+  {
+    icon: DollarSign,
+    title: "Best Prices",
+    desc: "Compare prices from hundreds of travel sites to find the lowest fares.",
+  },
+  {
+    icon: Shield,
+    title: "Trusted Partners",
+    desc: "Book through Aviasales and Booking.com with secure payments.",
+  },
+  {
+    icon: Globe,
+    title: "Global Coverage",
+    desc: "Flights and hotels in thousands of destinations worldwide.",
+  },
+  {
+    icon: Zap,
+    title: "Real-time Data",
+    desc: "Live pricing and availability updated constantly.",
+  },
+];
+
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div>
+      {/* Hero */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-primary/10 via-background to-primary/5 py-16 md:py-24">
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+          <HeroText delay={0}>
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <FloatingElement delay={0} duration={2.5} distance={6}>
+                <Plane className="h-8 w-8 text-primary" />
+              </FloatingElement>
+              <span className="text-2xl text-muted-foreground">&</span>
+              <FloatingElement delay={0.5} duration={2.5} distance={6}>
+                <Hotel className="h-8 w-8 text-primary" />
+              </FloatingElement>
+            </div>
+          </HeroText>
+          <HeroText delay={0.1}>
+            <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-4">
+              Flights & Hotels{" "}
+              <span className="text-primary bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent animate-gradient">
+                Made Simple
+              </span>
+            </h1>
+          </HeroText>
+          <HeroText delay={0.25}>
+            <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+              Compare flight prices from hundreds of airlines. Find hotel deals on
+              Booking.com. Everything you need for your perfect trip.
+            </p>
+          </HeroText>
+          <HeroText delay={0.4}>
+            <HomeSearch />
+          </HeroText>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+      </section>
+
+      {/* Features */}
+      <section className="py-16 bg-card border-y">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <StaggerContainer
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
+            staggerDelay={0.1}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            {FEATURES.map((f) => (
+              <StaggerItem key={f.title} direction="scale-up">
+                <div className="text-center group">
+                  <div className="mx-auto mb-3 w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300">
+                    <f.icon className="h-6 w-6 text-primary" />
+                  </div>
+                  <h3 className="font-semibold mb-1">{f.title}</h3>
+                  <p className="text-sm text-muted-foreground">{f.desc}</p>
+                </div>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
         </div>
-      </main>
+      </section>
+
+      {/* Popular Destinations */}
+      <section className="py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <FadeIn direction="up" className="text-center mb-10">
+            <h2 className="text-3xl font-bold mb-2">Popular Destinations</h2>
+            <p className="text-muted-foreground">
+              Explore the world&apos;s most sought-after travel destinations
+            </p>
+          </FadeIn>
+          <StaggerContainer
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"
+            staggerDelay={0.08}
+          >
+            {POPULAR_DESTINATIONS.map((dest) => (
+              <StaggerItem key={dest.iata} direction="scale-up">
+                <DestinationCard {...dest} />
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+        </div>
+      </section>
+
+      {/* Flight Deals */}
+      <section className="py-16 bg-muted/30">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <FadeIn direction="up" className="text-center mb-10">
+            <h2 className="text-3xl font-bold mb-2">Cheap Flight Deals</h2>
+            <p className="text-muted-foreground">
+              The latest flight deals found by our system
+            </p>
+          </FadeIn>
+          <FadeIn delay={0.15}>
+            <FlightDeals />
+          </FadeIn>
+        </div>
+      </section>
     </div>
   );
 }
