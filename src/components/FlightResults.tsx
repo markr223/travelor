@@ -266,62 +266,63 @@ export function FlightResults({
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, ease }}
-        className="flex items-center justify-between mb-4"
+        className="mb-4 space-y-2"
       >
-        <div>
-          <h2 className={`text-xl font-bold ${premium ? "text-white" : ""}`}>
-            {originName || origin} to {destinationName || destination}
-          </h2>
-          <div className={`text-sm flex items-center gap-2 ${premium ? "text-amber-400/80" : "text-muted-foreground"}`}>
-            {premium && <Crown className="h-3.5 w-3.5" />}
-            {classInfo?.label || "Economy"} class
-            {filtered.length > 0 && ` \u00B7 ${filtered.length} flight${filtered.length !== 1 ? "s" : ""}`}
-            {results.length > grouped.length && ` \u00B7 ${results.length} provider options`}
-            {searching && (
-              <span className="inline-flex items-center gap-1.5 ml-2">
-                <Radio className={`h-3 w-3 animate-pulse ${premium ? "text-amber-400" : "text-primary"}`} />
-                <span className={premium ? "text-amber-400/60" : "text-muted-foreground"}>
-                  Searching{gatesCount > 0 ? ` ${gatesLoaded}/${gatesCount} providers` : "..."}
-                </span>
-              </span>
-            )}
+        <div className="flex items-start sm:items-center justify-between gap-2">
+          <div className="min-w-0">
+            <h2 className={`text-lg sm:text-xl font-bold truncate ${premium ? "text-white" : ""}`}>
+              {originName || origin} to {destinationName || destination}
+            </h2>
+          </div>
+          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+            <Sheet>
+              <SheetTrigger
+                className={`lg:hidden inline-flex items-center justify-center rounded-lg border px-2 sm:px-2.5 h-8 text-xs font-medium transition-colors ${
+                  premium
+                    ? `border-amber-500/30 text-amber-400 hover:bg-amber-500/10 ${hasActiveFilters ? "bg-amber-500/10" : ""}`
+                    : `border-border hover:bg-accent ${hasActiveFilters ? "bg-accent" : ""}`
+                }`}
+              >
+                <SlidersHorizontal className="h-3.5 w-3.5 sm:mr-1.5" />
+                <span className="hidden sm:inline">Filters</span>
+                {hasActiveFilters && (
+                  <span className={`ml-1 sm:ml-1.5 w-2 h-2 rounded-full ${premium ? "bg-amber-400" : "bg-primary"}`} />
+                )}
+              </SheetTrigger>
+              <SheetContent side="left" className={`w-[85vw] max-w-80 p-4 sm:p-6 ${premium ? "bg-gray-900 border-gray-800" : ""}`}>
+                <FlightFilters
+                  filters={filters}
+                  onChange={setFilters}
+                  results={grouped}
+                  premium={premium}
+                />
+              </SheetContent>
+            </Sheet>
+            <Select value={sortBy} onValueChange={(v) => { if (v) setSortBy(v); }}>
+              <SelectTrigger className={`w-[110px] sm:w-[140px] h-8 text-xs sm:text-sm ${premium ? "bg-gray-800 border-amber-500/30 text-white" : ""}`}>
+                <SelectValue placeholder="Sort by" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="price">Price</SelectItem>
+                <SelectItem value="duration">Duration</SelectItem>
+                <SelectItem value="stops">Stops</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
         </div>
-        <div className="flex items-center gap-2">
-          {/* Mobile filter button */}
-          <Sheet>
-            <SheetTrigger
-              className={`lg:hidden inline-flex items-center justify-center rounded-lg border px-2.5 h-8 text-xs font-medium transition-colors ${
-                premium
-                  ? `border-amber-500/30 text-amber-400 hover:bg-amber-500/10 ${hasActiveFilters ? "bg-amber-500/10" : ""}`
-                  : `border-border hover:bg-accent ${hasActiveFilters ? "bg-accent" : ""}`
-              }`}
-            >
-              <SlidersHorizontal className="h-3.5 w-3.5 mr-1.5" />
-              Filters
-              {hasActiveFilters && (
-                <span className={`ml-1.5 w-2 h-2 rounded-full ${premium ? "bg-amber-400" : "bg-primary"}`} />
-              )}
-            </SheetTrigger>
-            <SheetContent side="left" className={`w-80 p-6 ${premium ? "bg-gray-900 border-gray-800" : ""}`}>
-              <FlightFilters
-                filters={filters}
-                onChange={setFilters}
-                results={grouped}
-                premium={premium}
-              />
-            </SheetContent>
-          </Sheet>
-          <Select value={sortBy} onValueChange={(v) => { if (v) setSortBy(v); }}>
-            <SelectTrigger className={selectTriggerClass}>
-              <SelectValue placeholder="Sort by" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="price">Price</SelectItem>
-              <SelectItem value="duration">Duration</SelectItem>
-              <SelectItem value="stops">Stops</SelectItem>
-            </SelectContent>
-          </Select>
+        <div className={`text-xs sm:text-sm flex flex-wrap items-center gap-x-2 gap-y-0.5 ${premium ? "text-amber-400/80" : "text-muted-foreground"}`}>
+          {premium && <Crown className="h-3.5 w-3.5" />}
+          <span>{classInfo?.label || "Economy"} class</span>
+          {filtered.length > 0 && <span>\u00B7 {filtered.length} flight{filtered.length !== 1 ? "s" : ""}</span>}
+          {results.length > grouped.length && <span className="hidden sm:inline">\u00B7 {results.length} provider options</span>}
+          {searching && (
+            <span className="inline-flex items-center gap-1 sm:gap-1.5">
+              <Radio className={`h-3 w-3 animate-pulse ${premium ? "text-amber-400" : "text-primary"}`} />
+              <span className={`text-[10px] sm:text-sm ${premium ? "text-amber-400/60" : "text-muted-foreground"}`}>
+                {gatesCount > 0 ? `${gatesLoaded}/${gatesCount}` : "Searching..."}
+              </span>
+            </span>
+          )}
         </div>
       </motion.div>
 
@@ -333,14 +334,14 @@ export function FlightResults({
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className={`rounded-xl p-4 mb-4 flex items-center gap-3 ${
+            className={`rounded-xl p-3 sm:p-4 mb-4 flex items-center gap-2 sm:gap-3 ${
               premium ? "bg-amber-500/10 border border-amber-500/20" : "bg-primary/5 border border-primary/10"
             }`}
           >
-            <Loader2 className={`h-5 w-5 animate-spin ${premium ? "text-amber-400" : "text-primary"}`} />
-            <div className="flex-1">
-              <p className={`text-sm font-medium ${premium ? "text-amber-300" : "text-foreground"}`}>
-                Searching live prices from {gatesCount || "multiple"} providers...
+            <Loader2 className={`h-4 w-4 sm:h-5 sm:w-5 animate-spin shrink-0 ${premium ? "text-amber-400" : "text-primary"}`} />
+            <div className="flex-1 min-w-0">
+              <p className={`text-xs sm:text-sm font-medium ${premium ? "text-amber-300" : "text-foreground"}`}>
+                Searching {gatesCount || "multiple"} providers...
               </p>
               {gatesCount > 0 && (
                 <div className="mt-1.5 w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1.5">

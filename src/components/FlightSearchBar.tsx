@@ -266,10 +266,10 @@ export function FlightSearchBar({
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-3 items-end mb-3">
+      <div className="grid grid-cols-[1fr_auto_1fr] gap-2 sm:gap-3 items-end mb-3">
         <CityInput
           label="From"
-          placeholder="Departure city..."
+          placeholder="From..."
           value={originText}
           onChange={(v) => { setOriginText(v); setOriginCode(""); }}
           onSelect={(loc) => { setOriginText(loc.cityName); setOriginCode(loc.iata?.[0] || loc.id); }}
@@ -280,7 +280,7 @@ export function FlightSearchBar({
             variant="ghost"
             size="icon"
             onClick={swap}
-            className={`mb-0.5 ${premium ? "text-amber-400 hover:text-amber-300 hover:bg-amber-500/10" : ""}`}
+            className={`mb-0.5 h-8 w-8 sm:h-9 sm:w-9 ${premium ? "text-amber-400 hover:text-amber-300 hover:bg-amber-500/10" : ""}`}
             title="Swap cities"
           >
             <ArrowRightLeft className="h-4 w-4" />
@@ -288,7 +288,7 @@ export function FlightSearchBar({
         </div>
         <CityInput
           label="To"
-          placeholder="Destination city..."
+          placeholder="To..."
           value={destText}
           onChange={(v) => { setDestText(v); setDestCode(""); }}
           onSelect={(loc) => { setDestText(loc.cityName); setDestCode(loc.iata?.[0] || loc.id); }}
@@ -296,7 +296,7 @@ export function FlightSearchBar({
         />
       </div>
 
-      <div className={`grid gap-3 items-end ${
+      <div className={`grid gap-2 sm:gap-3 items-end ${
         tripType === "oneway"
           ? "grid-cols-2 md:grid-cols-[1fr_auto_auto]"
           : "grid-cols-2 md:grid-cols-[1fr_1fr_auto_auto]"
@@ -358,12 +358,12 @@ export function FlightSearchBar({
           </div>
         </div>
 
-        <div>
-          <label className="text-xs font-medium text-transparent mb-1 block">&nbsp;</label>
+        <div className="col-span-2 md:col-span-1">
+          <label className="text-xs font-medium text-transparent mb-1 hidden md:block">&nbsp;</label>
           <Button
             onClick={handleSearch}
             disabled={searching}
-            className={`w-full h-9 ${
+            className={`w-full h-10 sm:h-9 ${
               premium
                 ? "bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-black font-semibold shadow-lg shadow-amber-500/20"
                 : ""

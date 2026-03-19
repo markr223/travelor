@@ -82,15 +82,15 @@ export function BookingHotelWidget({
   }
 
   return (
-    <div className="w-full bg-card rounded-2xl shadow-xl border p-6">
-      <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
+    <div className="w-full bg-card rounded-2xl shadow-xl border p-4 sm:p-6">
+      <h2 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4 flex items-center gap-2">
         <Search className="h-5 w-5 text-primary" />
         Search Hotels
       </h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_auto_auto_auto] gap-3 items-end">
+      <div className="grid grid-cols-2 md:grid-cols-[1fr_auto_auto_auto_auto] gap-2 sm:gap-3 items-end">
         {/* Destination */}
-        <div className="relative" ref={ref}>
+        <div className="relative col-span-2 md:col-span-1" ref={ref}>
           <label className="text-xs font-medium text-muted-foreground mb-1 block">
             Destination
           </label>
@@ -208,17 +208,17 @@ export function BookingHotelWidget({
               max={10}
               value={guests}
               onChange={(e) => setGuests(e.target.value)}
-              className="pl-10 w-20 h-9"
+              className="pl-10 w-full sm:w-20 h-9"
             />
           </div>
         </div>
 
         {/* Search */}
-        <div>
-          <label className="text-xs font-medium text-transparent mb-1 block">
+        <div className="col-span-2 md:col-span-1">
+          <label className="text-xs font-medium text-transparent mb-1 hidden md:block">
             &nbsp;
           </label>
-          <Button onClick={handleSearch} className="h-9 animate-pulse-glow">
+          <Button onClick={handleSearch} className="w-full sm:w-auto h-10 sm:h-9">
             <Search className="mr-2 h-4 w-4" />
             Search Hotels
           </Button>
