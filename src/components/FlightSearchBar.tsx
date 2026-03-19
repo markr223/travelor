@@ -215,8 +215,8 @@ export function FlightSearchBar({
 
   const labelColor = premium ? "text-amber-400/80" : "text-muted-foreground";
   const triggerClass = premium
-    ? "inline-flex w-full items-center justify-start rounded-lg border border-amber-500/30 bg-gray-800/50 px-3 h-9 text-sm text-white hover:bg-gray-700/50 transition-colors"
-    : "inline-flex w-full items-center justify-start rounded-lg border border-border bg-background px-3 h-9 text-sm hover:bg-muted transition-colors";
+    ? "inline-flex w-full items-center justify-start rounded-lg border border-amber-500/30 bg-gray-800/50 px-3 h-10 sm:h-9 text-sm text-white hover:bg-gray-700/50 transition-colors"
+    : "inline-flex w-full items-center justify-start rounded-lg border border-border bg-background px-3 h-10 sm:h-9 text-sm hover:bg-muted transition-colors";
   const calIconClass = premium ? "mr-2 h-4 w-4 text-amber-500/60" : "mr-2 h-4 w-4 text-muted-foreground";
 
   return (
@@ -298,7 +298,7 @@ export function FlightSearchBar({
 
       <div className={`grid gap-2 sm:gap-3 items-end ${
         tripType === "oneway"
-          ? "grid-cols-2 md:grid-cols-[1fr_auto_auto]"
+          ? "grid-cols-1 sm:grid-cols-2 md:grid-cols-[1fr_auto_auto]"
           : "grid-cols-2 md:grid-cols-[1fr_1fr_auto_auto]"
       }`}>
         <div>
@@ -363,7 +363,7 @@ export function FlightSearchBar({
           <Button
             onClick={handleSearch}
             disabled={searching}
-            className={`w-full h-10 sm:h-9 ${
+            className={`w-full h-11 sm:h-10 md:h-9 ${
               premium
                 ? "bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-black font-semibold shadow-lg shadow-amber-500/20"
                 : ""

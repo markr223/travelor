@@ -104,7 +104,7 @@ export function BookingHotelWidget({
                 suggestions.length > 0 && setShowSuggestions(true)
               }
               onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-              className="pl-10 h-9"
+              className="pl-10 h-10 sm:h-9"
             />
           </div>
           <AnimatePresence>
@@ -119,8 +119,8 @@ export function BookingHotelWidget({
                 {suggestions.map((loc, i) => (
                   <motion.button
                     key={loc.id}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.04 }}
                     className="w-full text-left px-3 py-2 hover:bg-accent transition-colors flex items-center gap-2"
                     onClick={() => {
@@ -148,7 +148,7 @@ export function BookingHotelWidget({
             Check-in
           </label>
           <Popover open={checkInOpen} onOpenChange={setCheckInOpen}>
-            <PopoverTrigger className="inline-flex w-full items-center justify-start rounded-lg border border-border bg-background px-3 h-9 text-sm hover:bg-muted transition-colors">
+            <PopoverTrigger className="inline-flex w-full items-center justify-start rounded-lg border border-border bg-background px-3 h-10 sm:h-9 text-sm hover:bg-muted transition-colors">
               <CalendarDays className="mr-2 h-4 w-4 text-muted-foreground" />
               {format(checkIn, "MMM d")}
             </PopoverTrigger>
@@ -175,7 +175,7 @@ export function BookingHotelWidget({
             Check-out
           </label>
           <Popover open={checkOutOpen} onOpenChange={setCheckOutOpen}>
-            <PopoverTrigger className="inline-flex w-full items-center justify-start rounded-lg border border-border bg-background px-3 h-9 text-sm hover:bg-muted transition-colors">
+            <PopoverTrigger className="inline-flex w-full items-center justify-start rounded-lg border border-border bg-background px-3 h-10 sm:h-9 text-sm hover:bg-muted transition-colors">
               <CalendarDays className="mr-2 h-4 w-4 text-muted-foreground" />
               {format(checkOut, "MMM d")}
             </PopoverTrigger>
@@ -208,7 +208,7 @@ export function BookingHotelWidget({
               max={10}
               value={guests}
               onChange={(e) => setGuests(e.target.value)}
-              className="pl-10 w-full sm:w-20 h-9"
+              className="pl-10 w-full sm:w-20 h-10 sm:h-9"
             />
           </div>
         </div>
@@ -218,7 +218,7 @@ export function BookingHotelWidget({
           <label className="text-xs font-medium text-transparent mb-1 hidden md:block">
             &nbsp;
           </label>
-          <Button onClick={handleSearch} className="w-full sm:w-auto h-10 sm:h-9">
+          <Button onClick={handleSearch} className="w-full sm:w-auto h-11 sm:h-9">
             <Search className="mr-2 h-4 w-4" />
             Search Hotels
           </Button>

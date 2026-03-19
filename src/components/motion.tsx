@@ -16,13 +16,13 @@ const fadeDownVariants: Variants = {
 };
 
 const fadeLeftVariants: Variants = {
-  hidden: { opacity: 0, x: -30 },
-  visible: { opacity: 1, x: 0 },
+  hidden: { opacity: 0, y: 20, filter: "blur(4px)" },
+  visible: { opacity: 1, y: 0, filter: "blur(0px)" },
 };
 
 const fadeRightVariants: Variants = {
-  hidden: { opacity: 0, x: 30 },
-  visible: { opacity: 1, x: 0 },
+  hidden: { opacity: 0, y: 20, filter: "blur(4px)" },
+  visible: { opacity: 1, y: 0, filter: "blur(0px)" },
 };
 
 const fadeVariants: Variants = {
@@ -300,8 +300,8 @@ export function AnimatedListItem({
   return (
     <motion.div
       variants={{
-        hidden: { opacity: 0, x: -20, filter: "blur(4px)" },
-        visible: { opacity: 1, x: 0, filter: "blur(0px)" },
+        hidden: { opacity: 0, y: 12, filter: "blur(4px)" },
+        visible: { opacity: 1, y: 0, filter: "blur(0px)" },
       }}
       transition={{ duration: 0.4, ease }}
       className={className}

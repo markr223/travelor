@@ -30,9 +30,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${jakarta.variable} ${firaCode.variable} h-full antialiased`}
+      className={`${jakarta.variable} ${firaCode.variable} h-full antialiased overflow-x-hidden`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col overflow-x-hidden">
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

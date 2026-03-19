@@ -18,12 +18,12 @@ export function HomeSearch() {
 
   return (
     <div className="w-full max-w-4xl mx-auto">
-      <div className="flex justify-center gap-0.5 sm:gap-1 mb-4">
+      <div className="flex justify-center gap-0.5 sm:gap-1 mb-4 px-1">
         {tabs.map((t) => (
           <button
             key={t.id}
             onClick={() => setTab(t.id)}
-            className={`inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-2 sm:py-2.5 rounded-t-xl text-xs sm:text-sm font-semibold transition-all ${
+            className={`flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 sm:gap-2 px-2 sm:px-5 py-2.5 sm:py-2.5 rounded-t-xl text-xs sm:text-sm font-semibold transition-all ${
               tab === t.id
                 ? t.premium
                   ? "bg-gray-900 text-amber-400 border border-b-0 border-amber-500/30 shadow-lg shadow-amber-500/5"
@@ -33,7 +33,7 @@ export function HomeSearch() {
                   : "bg-transparent text-muted-foreground hover:text-foreground"
             }`}
           >
-            <t.icon className="h-4 w-4" />
+            <t.icon className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
             {t.label}
           </button>
         ))}

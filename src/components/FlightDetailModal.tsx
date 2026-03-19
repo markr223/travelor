@@ -87,8 +87,8 @@ function SegmentDetail({
             )}
 
             <motion.div
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 + fi * 0.08 }}
               className={`flex items-stretch gap-2 sm:gap-3 ${premium ? "text-white" : ""}`}
             >
@@ -193,7 +193,7 @@ function ModalContent({
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 100 }}
         transition={{ type: "spring", damping: 28, stiffness: 320 }}
-        className={`relative w-full sm:max-w-2xl sm:mx-4 sm:my-8 md:my-16 rounded-t-2xl sm:rounded-2xl shadow-2xl max-h-[92vh] sm:max-h-[85vh] overflow-y-auto overscroll-contain ${
+        className={`relative w-full sm:max-w-2xl sm:mx-4 sm:my-8 md:my-16 rounded-t-2xl sm:rounded-2xl shadow-2xl max-h-[92dvh] sm:max-h-[85vh] overflow-y-auto overscroll-contain ${
           premium
             ? "bg-gray-900 border border-amber-500/20"
             : "bg-background border"
@@ -271,8 +271,8 @@ function ModalContent({
               {proposal.gates.map((gate, gi) => (
                 <motion.button
                   key={gate.gateId}
-                  initial={{ opacity: 0, x: -15 }}
-                  animate={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4 + gi * 0.05 }}
                   onClick={() => handleBooking(gate.url)}
                   className={`w-full flex items-center justify-between p-2.5 sm:p-3 rounded-xl border transition-all gap-2 ${

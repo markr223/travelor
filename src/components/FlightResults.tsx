@@ -403,8 +403,8 @@ export function FlightResults({
               filtered.map((proposal, i) => (
                 <motion.div
                   key={proposal.id}
-                  initial={{ opacity: 0, x: -20, filter: "blur(4px)" }}
-                  animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+                  initial={{ opacity: 0, y: 12, filter: "blur(4px)" }}
+                  animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                   transition={{ delay: Math.min(i * 0.04, 0.5), duration: 0.4, ease }}
                 >
                   <FlightCard proposal={proposal} searchId={searchId} premium={premium} />

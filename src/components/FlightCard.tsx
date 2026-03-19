@@ -228,7 +228,7 @@ export function FlightCard({ proposal, searchId, premium = false }: FlightCardPr
                   <div className="flex flex-col items-stretch shrink-0 sm:w-full">
                     <button
                       onClick={(e) => handleBooking(e, cheapest.url)}
-                      className={`inline-flex items-center justify-center rounded-lg text-sm font-semibold h-9 sm:h-10 px-5 sm:px-4 sm:mt-3 sm:w-full transition-all whitespace-nowrap ${
+                      className={`inline-flex items-center justify-center rounded-lg text-sm font-semibold h-11 sm:h-10 px-5 sm:px-4 sm:mt-3 sm:w-full transition-all whitespace-nowrap ${
                         premium
                           ? "bg-gradient-to-r from-amber-500 to-amber-600 text-black hover:from-amber-400 hover:to-amber-500 shadow-lg shadow-amber-500/20"
                           : "bg-primary text-primary-foreground hover:bg-primary/90"
@@ -270,7 +270,7 @@ export function FlightCard({ proposal, searchId, premium = false }: FlightCardPr
                   e.stopPropagation();
                   setShowMoreGates(!showMoreGates);
                 }}
-                className={`w-full flex items-center justify-center gap-1 text-[11px] font-medium py-2 rounded-md transition-colors ${
+                className={`w-full flex items-center justify-center gap-1 text-[11px] font-medium py-2.5 sm:py-2 rounded-md transition-colors ${
                   premium
                     ? "text-amber-400/60 hover:text-amber-400"
                     : "text-muted-foreground hover:text-foreground"
@@ -286,7 +286,7 @@ export function FlightCard({ proposal, searchId, premium = false }: FlightCardPr
                     <button
                       key={gate.gateId}
                       onClick={(e) => handleBooking(e, gate.url)}
-                      className={`w-full flex items-center justify-between px-2 sm:px-3 py-1.5 sm:py-2 rounded-md text-xs transition-colors ${
+                      className={`w-full flex items-center justify-between px-2.5 sm:px-3 py-2.5 sm:py-2 rounded-md text-xs transition-colors ${
                         premium ? "hover:bg-amber-500/10 text-gray-400" : "hover:bg-accent text-muted-foreground"
                       }`}
                     >
